@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
       <RouterLink class="navbar-brand" to="/dashboard">
         <i class="bi bi-link-45deg"></i> URL Shortener
@@ -10,6 +10,9 @@
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -81,63 +84,155 @@ const handleLogout = async () => {
 
 <style scoped>
 .navbar {
-  background-color: #7C3AED;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(167, 139, 250, 0.2);
+  background-color: var(--bg-white);
+  box-shadow: 0 1px 0 rgba(10, 37, 64, 0.1);
+  padding: 0;
+  border-bottom: 1px solid var(--border-light);
+  height: 64px;
+}
+
+.navbar .container-fluid {
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-brand {
   font-weight: 600;
-  font-size: 1.25rem;
-  color: white;
-  transition: all 0.2s ease;
+  font-size: 18px;
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  margin-right: 32px;
 }
 
 .navbar-brand:hover {
-  color: #E9D5FF;
+  color: var(--primary-color);
+}
+
+.navbar-brand i {
+  font-size: 24px;
+  color: var(--primary-color);
 }
 
 .nav-link {
-  padding: 0.5rem 1rem;
-  transition: all 0.2s ease;
-  color: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  transition: all 0.15s ease;
+  color: var(--text-tertiary);
   font-weight: 500;
-  border-radius: 0.5rem;
-  margin: 0 0.25rem;
+  border-radius: 6px;
+  margin: 0 2px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: white;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .nav-link.router-link-active {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
+  background-color: var(--primary-subtle);
+  color: var(--primary-color);
+}
+
+.nav-link i {
+  font-size: 16px;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.dropdown-toggle:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.dropdown-toggle::after {
+  margin-left: 4px;
 }
 
 .dropdown-menu {
-  border: 1px solid #E5E7EB;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  padding: 0.5rem;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+  margin-top: 8px;
+  min-width: 200px;
 }
 
 .dropdown-item {
-  border-radius: 0.375rem;
-  padding: 0.5rem 1rem;
-  transition: all 0.2s ease;
-  color: #374151;
+  border-radius: 6px;
+  padding: 8px 12px;
+  transition: all 0.15s ease;
+  color: var(--text-secondary);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .dropdown-item:hover {
-  background-color: #F3F4F6;
-  color: #7C3AED;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.dropdown-item:active {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.dropdown-item i {
+  font-size: 16px;
+  color: var(--text-tertiary);
 }
 
 .dropdown-divider {
-  margin: 0.5rem 0;
-  border-color: #E5E7EB;
+  margin: 6px 0;
+  border-color: var(--border-light);
+}
+
+/* Mobile responsive */
+@media (max-width: 991px) {
+  .navbar {
+    height: auto;
+    min-height: 64px;
+  }
+
+  .navbar .container-fluid {
+    padding: 12px 16px;
+  }
+
+  .navbar-collapse {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .navbar-nav {
+    align-items: flex-start;
+  }
+
+  .nav-link {
+    margin: 2px 0;
+  }
 }
 </style>

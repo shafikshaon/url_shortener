@@ -129,7 +129,7 @@ import { RouterLink } from 'vue-router'
 
 <style scoped>
 .hero-section {
-  background-color: #7C3AED;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
   padding: 5rem 0;
   min-height: 70vh;
@@ -146,7 +146,7 @@ import { RouterLink } from 'vue-router'
   right: -10%;
   width: 500px;
   height: 500px;
-  background-color: rgba(167, 139, 250, 0.1);
+  background-color: rgba(139, 133, 255, 0.15);
   border-radius: 50%;
 }
 
@@ -157,13 +157,25 @@ import { RouterLink } from 'vue-router'
   left: -5%;
   width: 400px;
   height: 400px;
-  background-color: rgba(109, 40, 217, 0.1);
+  background-color: rgba(79, 70, 229, 0.15);
   border-radius: 50%;
 }
 
 .hero-section .container {
   position: relative;
   z-index: 1;
+}
+
+.hero-section h1 {
+  color: white;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.hero-section .lead {
+  font-size: 1.125rem;
+  opacity: 0.95;
+  line-height: 1.7;
 }
 
 .hero-image {
@@ -173,66 +185,129 @@ import { RouterLink } from 'vue-router'
 }
 
 .features-section {
-  background-color: white;
+  background-color: var(--bg-white);
+  padding: 5rem 0;
+}
+
+.features-section h2 {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 3rem;
 }
 
 .feature-card {
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
-  border: 1px solid #E5E7EB;
+  background: var(--bg-white);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-light);
   height: 100%;
 }
 
 .feature-card:hover {
-  transform: translateY(-0.5rem);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border-color: #7C3AED;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
 }
 
 .feature-card i {
   font-size: 3rem;
 }
 
+.feature-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
 .pricing-section {
-  background-color: #F9FAFB;
+  background-color: var(--bg-secondary);
+  padding: 5rem 0;
+}
+
+.pricing-section h2 {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 3rem;
 }
 
 .pricing-card {
-  border-radius: 1rem;
-  border: 2px solid #E5E7EB;
-  transition: all 0.3s ease;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  transition: all 0.2s ease;
   position: relative;
-  background: white;
+  background: var(--bg-white);
   height: 100%;
+  box-shadow: var(--shadow-sm);
 }
 
 .pricing-card:hover {
-  transform: translateY(-0.5rem);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.pricing-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .pricing-card.featured {
-  border-color: #7C3AED;
-  border-width: 3px;
+  border-color: var(--primary-color);
+  border-width: 2px;
   transform: scale(1.05);
+  box-shadow: var(--shadow-md);
 }
 
 .pricing-card.featured:hover {
-  transform: scale(1.05) translateY(-0.5rem);
+  transform: scale(1.05) translateY(-4px);
+  box-shadow: var(--shadow-xl);
 }
 
 .badge-featured {
   position: absolute;
   top: -14px;
   right: 24px;
-  background: #7C3AED;
+  background: var(--primary-color);
   color: white;
-  padding: 0.375rem 1.25rem;
-  border-radius: 1.5rem;
+  padding: 6px 16px;
+  border-radius: 20px;
   font-weight: 600;
-  font-size: 0.875rem;
-  box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.3);
+  font-size: 13px;
+  box-shadow: 0 4px 6px -1px rgba(99, 91, 255, 0.3);
+  letter-spacing: -0.01em;
+}
+
+.pricing-card ul {
+  text-align: left;
+  padding: 0;
+}
+
+.pricing-card ul li {
+  color: var(--text-secondary);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pricing-card ul li i {
+  color: var(--success-color);
+  font-size: 16px;
+}
+
+.pricing-card .display-4 {
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 </style>

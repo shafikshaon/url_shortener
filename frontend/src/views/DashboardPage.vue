@@ -197,43 +197,84 @@ onMounted(() => {
 
 <style scoped>
 .dashboard-page {
-  background-color: #F9FAFB;
+  background-color: var(--bg-primary);
   min-height: 100vh;
 }
 
 .stat-card {
-  border: 1px solid #E5E7EB;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-xs);
+  transition: all 0.2s ease;
+  height: 100%;
 }
 
 .stat-card:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-color);
+}
+
+.stat-card .card-body {
+  padding: 20px;
+}
+
+.stat-card h2 {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.stat-card p {
+  color: var(--text-tertiary);
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .stat-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 0.75rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 20px;
   color: white;
 }
 
-.card-header {
-  border-bottom: 1px solid #E5E7EB;
-  background-color: white;
+.stat-icon.bg-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
 }
 
-code {
-  background-color: #F3F4F6;
-  color: #7C3AED;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.375rem;
-  font-weight: 500;
-  font-size: 0.875rem;
+.stat-icon.bg-success {
+  background: linear-gradient(135deg, #00D924 0%, #00A86B 100%);
+}
+
+.stat-icon.bg-info {
+  background: linear-gradient(135deg, #0073E6 0%, #005BB5 100%);
+}
+
+.card-header {
+  border-bottom: 1px solid var(--border-light);
+  background-color: var(--bg-white);
+  padding: 20px 24px;
+}
+
+.card-header h5 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
 }
 </style>

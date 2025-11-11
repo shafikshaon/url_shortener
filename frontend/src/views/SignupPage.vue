@@ -130,7 +130,7 @@ const handleSignup = async () => {
 <style scoped>
 .auth-page {
   min-height: 100vh;
-  background-color: #7C3AED;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   padding: 2rem 0;
   position: relative;
   overflow: hidden;
@@ -143,7 +143,7 @@ const handleSignup = async () => {
   right: -5%;
   width: 400px;
   height: 400px;
-  background-color: rgba(167, 139, 250, 0.15);
+  background-color: rgba(139, 133, 255, 0.15);
   border-radius: 50%;
 }
 
@@ -154,7 +154,7 @@ const handleSignup = async () => {
   left: -10%;
   width: 500px;
   height: 500px;
-  background-color: rgba(109, 40, 217, 0.15);
+  background-color: rgba(79, 70, 229, 0.15);
   border-radius: 50%;
 }
 
@@ -164,19 +164,30 @@ const handleSignup = async () => {
 }
 
 .card {
-  border: 1px solid #E5E7EB;
-  border-radius: 1rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  box-shadow: var(--shadow-xl);
+  background: var(--bg-white);
+}
+
+.card h2 {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.75rem;
+}
+
+.card p {
+  color: var(--text-tertiary);
 }
 
 .form-control {
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
+  padding: 12px 14px;
+  border-radius: 6px;
 }
 
 .btn-primary {
-  padding: 0.75rem;
-  border-radius: 0.5rem;
+  padding: 12px;
+  border-radius: 6px;
   font-weight: 600;
 }
 </style>
