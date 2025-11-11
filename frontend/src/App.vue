@@ -106,7 +106,7 @@ p {
 }
 
 main {
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 72px);
 }
 
 /* Buttons - Stripe-inspired professional style */
