@@ -9,6 +9,8 @@ import (
 	"github.com/shafikshaon/url_shortener/config"
 	"github.com/shafikshaon/url_shortener/internal/analytics"
 	"github.com/shafikshaon/url_shortener/internal/auth"
+	"github.com/shafikshaon/url_shortener/internal/logger"
+	"github.com/shafikshaon/url_shortener/internal/middleware"
 	"github.com/shafikshaon/url_shortener/internal/models"
 	"github.com/shafikshaon/url_shortener/internal/service"
 )
@@ -49,14 +51,21 @@ type LinkResponse struct {
 
 // CreateLink handles link creation
 func (h *LinkHandler) CreateLink(c *gin.Context) {
+	ctx := middleware.GetContext(c)
+	logger.Infof(ctx, "CreateLink handler called")
+
 	userID, exists := auth.GetUserID(c)
 	if !exists {
+		logger.Warnf(ctx, "Unauthorized access attempt to create link")
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
 		return
 	}
 
+	logger.Infof(ctx, "Creating link for user ID: %d", userID)
+
 	var req CreateLinkRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
+		logger.Errorf(ctx, "Invalid request body: %+v", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -83,6 +92,7 @@ func (h *LinkHandler) CreateLink(c *gin.Context) {
 
 	// Create link with optional custom short code
 	if err := h.linkService.CreateLink(link, req.ShortCode); err != nil {
+		logger.Errorf(ctx, "Failed to create link: %+v", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -92,6 +102,7 @@ func (h *LinkHandler) CreateLink(c *gin.Context) {
 		ShortURL: h.config.Server.BaseURL + "/" + link.ShortCode,
 	}
 
+	logger.Infof(ctx, "Successfully created link with ID: %d, short code: %s", link.ID, link.ShortCode)
 	c.JSON(http.StatusCreated, response)
 }
 
@@ -294,19 +305,26 @@ func (h *LinkHandler) GetUserTags(c *gin.Context) {
 
 // Redirect handles short code redirection
 func (h *LinkHandler) Redirect(c *gin.Context) {
+	ctx := middleware.GetContext(c)
 	shortCode := c.Param("code")
+
+	logger.Infof(ctx, "Redirect request for short code: %s", shortCode)
 
 	link, err := h.linkService.GetLinkByShortCode(shortCode)
 	if err != nil {
+		logger.Warnf(ctx, "Link not found with short code: %s", shortCode)
 		c.JSON(http.StatusNotFound, gin.H{"error": "Link not found"})
 		return
 	}
 
 	// Check if link has expired
 	if link.IsExpired() {
+		logger.Warnf(ctx, "Link expired: short code %s, link ID: %d", shortCode, link.ID)
 		c.JSON(http.StatusGone, gin.H{"error": "Link has expired"})
 		return
 	}
+
+	logger.Infof(ctx, "Redirecting short code %s to: %s (link ID: %d)", shortCode, link.DestinationURL, link.ID)
 
 	// Track click asynchronously (don't block redirect)
 	go h.tracker.TrackClick(link.ID, c.ClientIP(), c.Request)

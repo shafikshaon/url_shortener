@@ -2,6 +2,8 @@ package models
 
 import (
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type SubscriptionTier string
@@ -13,13 +15,14 @@ const (
 )
 
 type User struct {
-	ID               int64            `json:"id" db:"id"`
-	Email            string           `json:"email" db:"email"`
-	PasswordHash     string           `json:"-" db:"password_hash"`
-	APIKey           *string          `json:"api_key,omitempty" db:"api_key"`
-	SubscriptionTier SubscriptionTier `json:"subscription_tier" db:"subscription_tier"`
-	CreatedAt        time.Time        `json:"created_at" db:"created_at"`
-	UpdatedAt        time.Time        `json:"updated_at" db:"updated_at"`
+	ID               int64            `json:"id" db:"id" gorm:"primaryKey;autoIncrement"`
+	Email            string           `json:"email" db:"email" gorm:"uniqueIndex;not null;size:255"`
+	PasswordHash     string           `json:"-" db:"password_hash" gorm:"not null;size:255"`
+	APIKey           *string          `json:"api_key,omitempty" db:"api_key" gorm:"uniqueIndex;size:255"`
+	SubscriptionTier SubscriptionTier `json:"subscription_tier" db:"subscription_tier" gorm:"type:varchar(50);default:'free'"`
+	CreatedAt        time.Time        `json:"created_at" db:"created_at" gorm:"autoCreateTime"`
+	UpdatedAt        time.Time        `json:"updated_at" db:"updated_at" gorm:"autoUpdateTime"`
+	DeletedAt        gorm.DeletedAt   `json:"-" gorm:"index"`
 }
 
 // GetLinkLimit returns the maximum number of links allowed for this tier
