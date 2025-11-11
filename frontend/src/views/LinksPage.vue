@@ -268,35 +268,44 @@ onMounted(() => {
 
 <style scoped>
 .links-page {
-  background-color: #F9FAFB;
+  background-color: var(--bg-primary);
   min-height: 100vh;
 }
 
-.table-hover tbody tr:hover {
-  cursor: pointer;
-  background-color: #F9FAFB;
+.links-page h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
-code {
-  font-size: 0.875em;
-  padding: 0.25em 0.5em;
-  background-color: #F3F4F6;
-  color: #7C3AED;
-  border-radius: 0.375rem;
-  font-weight: 500;
+.links-page p {
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.table-hover tbody tr:hover {
+  cursor: default;
+  background-color: var(--bg-secondary);
 }
 
 .btn-link {
-  color: #6B7280;
+  color: var(--text-tertiary);
   text-decoration: none;
+  transition: all 0.15s ease;
 }
 
 .btn-link:hover {
-  color: #7C3AED;
+  color: var(--primary-color);
 }
 
 .card-footer {
-  background-color: white;
-  border-top: 1px solid #E5E7EB;
+  background-color: var(--bg-white);
+  border-top: 1px solid var(--border-light);
+  padding: 16px 24px;
+}
+
+.card-footer .text-muted {
+  color: var(--text-tertiary);
+  font-size: 14px;
 }
 </style>
