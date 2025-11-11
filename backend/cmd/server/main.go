@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 
 	"github.com/gin-contrib/cors"
@@ -10,26 +11,37 @@ import (
 	"github.com/shafikshaon/url_shortener/internal/api"
 	"github.com/shafikshaon/url_shortener/internal/auth"
 	"github.com/shafikshaon/url_shortener/internal/database"
+	"github.com/shafikshaon/url_shortener/internal/logger"
+	"github.com/shafikshaon/url_shortener/internal/middleware"
 	"github.com/shafikshaon/url_shortener/internal/service"
 )
 
 func main() {
+	ctx := context.Background()
+
 	// Load configuration
 	cfg := config.Load()
+	logger.Infof(ctx, "Configuration loaded for environment: %s", cfg.Env)
 
-	// Connect to database
-	db, err := database.New(cfg)
+	// Connect to GORM database
+	gormDB, err := database.NewGormDatabase(cfg)
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
-	defer db.Close()
+	defer gormDB.Close()
 
-	log.Println("✓ Database connected successfully")
+	logger.Infof(ctx, "✓ Database connected successfully")
 
-	// Initialize repositories
-	userRepo := database.NewUserRepository(db.DB)
-	linkRepo := database.NewLinkRepository(db.DB)
-	analyticsRepo := database.NewAnalyticsRepository(db.DB)
+	// Run auto-migrations
+	if err := gormDB.AutoMigrate(); err != nil {
+		log.Fatalf("Failed to run migrations: %v", err)
+	}
+	logger.Infof(ctx, "✓ Database migrations completed")
+
+	// Initialize GORM repositories
+	userRepo := database.NewUserRepository(gormDB.DB)
+	linkRepo := database.NewLinkRepository(gormDB.DB)
+	analyticsRepo := database.NewAnalyticsRepository(gormDB.DB)
 
 	// Initialize services
 	jwtService := auth.NewJWTService(cfg)
@@ -47,6 +59,10 @@ func main() {
 	}
 
 	router := gin.Default()
+
+	// Add trace middleware to inject trace IDs
+	router.Use(middleware.TraceMiddleware())
+	logger.Infof(ctx, "✓ Trace middleware enabled")
 
 	// CORS configuration
 	corsConfig := cors.Config{
@@ -110,11 +126,12 @@ func main() {
 
 	// Start server
 	addr := ":" + cfg.Server.Port
-	log.Printf("🚀 Server starting on %s", addr)
-	log.Printf("📊 Environment: %s", cfg.Env)
-	log.Printf("🔗 Base URL: %s", cfg.Server.BaseURL)
+	logger.Infof(ctx, "🚀 Server starting on %s", addr)
+	logger.Infof(ctx, "📊 Environment: %s", cfg.Env)
+	logger.Infof(ctx, "🔗 Base URL: %s", cfg.Server.BaseURL)
 
 	if err := router.Run(addr); err != nil {
+		logger.Errorf(ctx, "Failed to start server: %+v", err)
 		log.Fatalf("Failed to start server: %v", err)
 	}
 }

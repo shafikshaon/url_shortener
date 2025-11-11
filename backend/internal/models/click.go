@@ -2,17 +2,20 @@ package models
 
 import (
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type Click struct {
-	ID          int64     `json:"id" db:"id"`
-	LinkID      int64     `json:"link_id" db:"link_id"`
-	ClickedAt   time.Time `json:"clicked_at" db:"clicked_at"`
-	IPAddress   string    `json:"ip_address" db:"ip_address"`
-	CountryCode *string   `json:"country_code,omitempty" db:"country_code"`
-	Referer     *string   `json:"referer,omitempty" db:"referer"`
-	UserAgent   *string   `json:"user_agent,omitempty" db:"user_agent"`
-	DeviceType  *string   `json:"device_type,omitempty" db:"device_type"`
+	ID          int64          `json:"id" db:"id" gorm:"primaryKey;autoIncrement"`
+	LinkID      int64          `json:"link_id" db:"link_id" gorm:"not null;index"`
+	ClickedAt   time.Time      `json:"clicked_at" db:"clicked_at" gorm:"not null;index"`
+	IPAddress   string         `json:"ip_address" db:"ip_address" gorm:"size:45"`
+	CountryCode *string        `json:"country_code,omitempty" db:"country_code" gorm:"size:2;index"`
+	Referer     *string        `json:"referer,omitempty" db:"referer" gorm:"type:text"`
+	UserAgent   *string        `json:"user_agent,omitempty" db:"user_agent" gorm:"type:text"`
+	DeviceType  *string        `json:"device_type,omitempty" db:"device_type" gorm:"size:50"`
+	DeletedAt   gorm.DeletedAt `json:"-" gorm:"index"`
 }
 
 type AnalyticsDaily struct {
