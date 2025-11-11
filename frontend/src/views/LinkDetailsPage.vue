@@ -237,8 +237,8 @@ const renderChart = () => {
       datasets: [{
         label: 'Clicks',
         data: stats.value.daily_clicks.map(d => d.count),
-        borderColor: '#0d6efd',
-        backgroundColor: 'rgba(13, 110, 253, 0.1)',
+        borderColor: '#7C3AED',
+        backgroundColor: 'rgba(124, 58, 237, 0.1)',
         tension: 0.4,
         fill: true
       }]
@@ -288,9 +288,24 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.link-details-page {
+  background-color: #F9FAFB;
+  min-height: 100vh;
+}
+
 code {
   padding: 0.4em 0.6em;
-  background-color: rgba(13, 110, 253, 0.1);
-  border-radius: 0.25rem;
+  background-color: #F3F4F6;
+  color: #7C3AED;
+  border-radius: 0.375rem;
+  font-weight: 500;
+}
+
+.text-primary {
+  color: #7C3AED !important;
+}
+
+.text-success {
+  color: #10B981 !important;
 }
 </style>

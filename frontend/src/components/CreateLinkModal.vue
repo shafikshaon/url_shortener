@@ -210,6 +210,37 @@ const copyShortURL = async () => {
 }
 
 .modal-content {
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.modal-header {
+  border-bottom: 1px solid #E5E7EB;
+  padding: 1.25rem 1.5rem;
+}
+
+.modal-title {
+  color: #111827;
+  font-weight: 600;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  border-top: 1px solid #E5E7EB;
+  padding: 1rem 1.5rem;
+}
+
+.btn-outline-success {
+  border: 2px solid #10B981;
+  color: #10B981;
+}
+
+.btn-outline-success:hover {
+  background-color: #10B981;
+  color: white;
 }
 </style>

@@ -265,7 +265,41 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.settings-page {
+  background-color: #F9FAFB;
+  min-height: 100vh;
+}
+
 .border-primary {
   border-width: 2px;
+  border-color: #7C3AED !important;
+}
+
+.alert-warning {
+  background-color: #FEF3C7;
+  color: #92400E;
+  border: none;
+}
+
+.alert-info {
+  background-color: #DBEAFE;
+  color: #1E40AF;
+  border: none;
+}
+
+.input-group .btn-outline-secondary {
+  border-color: #E5E7EB;
+  color: #6B7280;
+}
+
+.input-group .btn-outline-secondary:hover {
+  background-color: #F3F4F6;
+  color: #374151;
+}
+
+.card-title {
+  color: #111827;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 </style>

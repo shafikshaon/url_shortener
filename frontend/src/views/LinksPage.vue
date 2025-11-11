@@ -267,15 +267,36 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.links-page {
+  background-color: #F9FAFB;
+  min-height: 100vh;
+}
+
 .table-hover tbody tr:hover {
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.025);
+  background-color: #F9FAFB;
 }
 
 code {
-  font-size: 0.9em;
-  padding: 0.2em 0.4em;
-  background-color: rgba(13, 110, 253, 0.1);
-  border-radius: 0.25rem;
+  font-size: 0.875em;
+  padding: 0.25em 0.5em;
+  background-color: #F3F4F6;
+  color: #7C3AED;
+  border-radius: 0.375rem;
+  font-weight: 500;
+}
+
+.btn-link {
+  color: #6B7280;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  color: #7C3AED;
+}
+
+.card-footer {
+  background-color: white;
+  border-top: 1px solid #E5E7EB;
 }
 </style>
