@@ -19,9 +19,14 @@ type Click struct {
 }
 
 type AnalyticsDaily struct {
-	LinkID     int64     `json:"link_id" db:"link_id"`
-	Date       time.Time `json:"date" db:"date"`
-	ClickCount int       `json:"click_count" db:"click_count"`
+	LinkID     int64     `json:"link_id" db:"link_id" gorm:"primaryKey"`
+	Date       time.Time `json:"date" db:"date" gorm:"primaryKey;type:date"`
+	ClickCount int       `json:"click_count" db:"click_count" gorm:"default:0"`
+}
+
+// TableName specifies the table name for AnalyticsDaily
+func (AnalyticsDaily) TableName() string {
+	return "link_analytics_daily"
 }
 
 // Analytics response structures

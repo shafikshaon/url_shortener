@@ -130,13 +130,43 @@ const handleSignup = async () => {
 <style scoped>
 .auth-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #7C3AED;
   padding: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-page::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 400px;
+  height: 400px;
+  background-color: rgba(167, 139, 250, 0.15);
+  border-radius: 50%;
+}
+
+.auth-page::after {
+  content: '';
+  position: absolute;
+  bottom: -15%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background-color: rgba(109, 40, 217, 0.15);
+  border-radius: 50%;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
 }
 
 .card {
-  border: none;
+  border: 1px solid #E5E7EB;
   border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .form-control {

@@ -196,15 +196,26 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.dashboard-page {
+  background-color: #F9FAFB;
+  min-height: 100vh;
+}
+
 .stat-card {
-  border: none;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
 }
 
 .stat-icon {
   width: 60px;
   height: 60px;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -213,6 +224,16 @@ onMounted(() => {
 }
 
 .card-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: 1px solid #E5E7EB;
+  background-color: white;
+}
+
+code {
+  background-color: #F3F4F6;
+  color: #7C3AED;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  font-size: 0.875rem;
 }
 </style>

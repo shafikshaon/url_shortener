@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <RouterLink class="navbar-brand" to="/dashboard">
         <i class="bi bi-link-45deg"></i> URL Shortener
@@ -81,26 +81,63 @@ const handleLogout = async () => {
 
 <style scoped>
 .navbar {
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  background-color: #7C3AED;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(167, 139, 250, 0.2);
 }
 
 .navbar-brand {
   font-weight: 600;
   font-size: 1.25rem;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.navbar-brand:hover {
+  color: #E9D5FF;
 }
 
 .nav-link {
   padding: 0.5rem 1rem;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  border-radius: 0.5rem;
+  margin: 0 0.25rem;
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
 }
 
 .nav-link.router-link-active {
   background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 0.25rem;
+  color: white;
+}
+
+.dropdown-menu {
+  border: 1px solid #E5E7EB;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 0.5rem;
+}
+
+.dropdown-item {
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+  color: #374151;
+}
+
+.dropdown-item:hover {
+  background-color: #F3F4F6;
+  color: #7C3AED;
+}
+
+.dropdown-divider {
+  margin: 0.5rem 0;
+  border-color: #E5E7EB;
 }
 </style>

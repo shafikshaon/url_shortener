@@ -129,61 +129,110 @@ import { RouterLink } from 'vue-router'
 
 <style scoped>
 .hero-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #7C3AED;
   color: white;
   padding: 5rem 0;
   min-height: 70vh;
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background-color: rgba(167, 139, 250, 0.1);
+  border-radius: 50%;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background-color: rgba(109, 40, 217, 0.1);
+  border-radius: 50%;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-image {
   text-align: center;
   font-size: 15rem;
-  opacity: 0.3;
+  opacity: 0.15;
+}
+
+.features-section {
+  background-color: white;
 }
 
 .feature-card {
   background: white;
   border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 1px solid #E5E7EB;
+  height: 100%;
 }
 
 .feature-card:hover {
   transform: translateY(-0.5rem);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: #7C3AED;
 }
 
 .feature-card i {
   font-size: 3rem;
 }
 
+.pricing-section {
+  background-color: #F9FAFB;
+}
+
 .pricing-card {
   border-radius: 1rem;
-  border: 2px solid #e9ecef;
+  border: 2px solid #E5E7EB;
   transition: all 0.3s ease;
   position: relative;
+  background: white;
+  height: 100%;
 }
 
 .pricing-card:hover {
   transform: translateY(-0.5rem);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .pricing-card.featured {
-  border-color: #0d6efd;
+  border-color: #7C3AED;
+  border-width: 3px;
   transform: scale(1.05);
+}
+
+.pricing-card.featured:hover {
+  transform: scale(1.05) translateY(-0.5rem);
 }
 
 .badge-featured {
   position: absolute;
-  top: -12px;
-  right: 20px;
-  background: #0d6efd;
+  top: -14px;
+  right: 24px;
+  background: #7C3AED;
   color: white;
-  padding: 0.25rem 1rem;
-  border-radius: 1rem;
+  padding: 0.375rem 1.25rem;
+  border-radius: 1.5rem;
   font-weight: 600;
   font-size: 0.875rem;
+  box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.3);
 }
 </style>

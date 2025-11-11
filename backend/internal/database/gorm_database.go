@@ -76,6 +76,7 @@ func (d *GormDatabase) AutoMigrate() error {
 		&models.User{},
 		&models.Link{},
 		&models.Click{},
+		&models.AnalyticsDaily{},
 	)
 
 	if err != nil {
