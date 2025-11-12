@@ -152,7 +152,7 @@ func (h *LinkHandler) ListLinks(c *gin.Context) {
 		limit = 100
 	}
 
-	links, err := h.linkService.ListLinks(userID, limit, offset, search, sortBy)
+	links, total, err := h.linkService.ListLinks(userID, limit, offset, search, sortBy)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve links"})
 		return
@@ -169,6 +169,7 @@ func (h *LinkHandler) ListLinks(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"links":  responses,
+		"total":  total,
 		"limit":  limit,
 		"offset": offset,
 	})

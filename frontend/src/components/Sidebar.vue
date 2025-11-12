@@ -59,55 +59,59 @@
         <!-- Organization Section -->
         <div class="nav-section">
           <div class="nav-section-title" v-if="!isCollapsed">Organization</div>
-          <RouterLink to="/tags" class="nav-item" title="Tags" v-if="false">
-            <i class="bi bi-tags"></i>
-            <span v-if="!isCollapsed">Tags</span>
+          <RouterLink to="/organization/settings" class="nav-item" title="Organization Settings">
+            <i class="bi bi-building"></i>
+            <span v-if="!isCollapsed">Organization</span>
           </RouterLink>
-          <RouterLink to="/folders" class="nav-item" title="Folders" v-if="false">
-            <i class="bi bi-folder"></i>
-            <span v-if="!isCollapsed">Folders</span>
+          <RouterLink to="/organization/members" class="nav-item" title="Team Members">
+            <i class="bi bi-people"></i>
+            <span v-if="!isCollapsed">Team</span>
           </RouterLink>
-          <RouterLink to="/archive" class="nav-item" title="Archive" v-if="false">
-            <i class="bi bi-archive"></i>
-            <span v-if="!isCollapsed">Archive</span>
+          <RouterLink to="/organization/domains" class="nav-item" title="Domains">
+            <i class="bi bi-globe"></i>
+            <span v-if="!isCollapsed">Domains</span>
           </RouterLink>
         </div>
 
         <!-- Configuration Section -->
         <div class="nav-section">
           <div class="nav-section-title" v-if="!isCollapsed">Configuration</div>
-          <RouterLink to="/domains" class="nav-item" title="Custom Domains" v-if="false">
-            <i class="bi bi-globe"></i>
-            <span v-if="!isCollapsed">Domains</span>
+          <RouterLink to="/config/api-keys" class="nav-item" title="API Keys">
+            <i class="bi bi-key"></i>
+            <span v-if="!isCollapsed">API Keys</span>
           </RouterLink>
-          <RouterLink to="/branded" class="nav-item" title="Branded Links" v-if="false">
-            <i class="bi bi-brush"></i>
-            <span v-if="!isCollapsed">Branded Links</span>
+          <RouterLink to="/config/webhooks" class="nav-item" title="Webhooks">
+            <i class="bi bi-broadcast"></i>
+            <span v-if="!isCollapsed">Webhooks</span>
           </RouterLink>
-          <RouterLink to="/api" class="nav-item" title="API & Webhooks" v-if="false">
-            <i class="bi bi-code-square"></i>
-            <span v-if="!isCollapsed">API & Webhooks</span>
-          </RouterLink>
-          <RouterLink to="/integrations" class="nav-item" title="Integrations" v-if="false">
+          <RouterLink to="/config/integrations" class="nav-item" title="Integrations">
             <i class="bi bi-puzzle"></i>
             <span v-if="!isCollapsed">Integrations</span>
+          </RouterLink>
+          <RouterLink to="/organization/domains" class="nav-item" title="Custom Domains">
+            <i class="bi bi-globe"></i>
+            <span v-if="!isCollapsed">Domains</span>
           </RouterLink>
         </div>
 
         <!-- Account Section -->
         <div class="nav-section">
           <div class="nav-section-title" v-if="!isCollapsed">Account</div>
+          <RouterLink to="/account/profile" class="nav-item" title="Profile">
+            <i class="bi bi-person"></i>
+            <span v-if="!isCollapsed">Profile</span>
+          </RouterLink>
+          <RouterLink to="/account/security" class="nav-item" title="Security">
+            <i class="bi bi-shield-check"></i>
+            <span v-if="!isCollapsed">Security</span>
+          </RouterLink>
+          <RouterLink to="/account/billing" class="nav-item" title="Billing & Plans">
+            <i class="bi bi-credit-card"></i>
+            <span v-if="!isCollapsed">Billing</span>
+          </RouterLink>
           <RouterLink to="/settings" class="nav-item" title="Settings">
             <i class="bi bi-gear"></i>
             <span v-if="!isCollapsed">Settings</span>
-          </RouterLink>
-          <RouterLink to="/team" class="nav-item" title="Team" v-if="false">
-            <i class="bi bi-people"></i>
-            <span v-if="!isCollapsed">Team</span>
-          </RouterLink>
-          <RouterLink to="/billing" class="nav-item" title="Billing & Plans" v-if="false">
-            <i class="bi bi-credit-card"></i>
-            <span v-if="!isCollapsed">Billing</span>
           </RouterLink>
         </div>
       </nav>

@@ -164,6 +164,22 @@ func (r *LinkRepository) CountByUserID(userID int64) (int, error) {
 	return int(count), nil
 }
 
+func (r *LinkRepository) CountByUserIDWithSearch(userID int64, search string) (int, error) {
+	query := r.db.Model(&models.Link{}).Where("user_id = ?", userID)
+
+	if search != "" {
+		searchPattern := "%" + search + "%"
+		query = query.Where("short_code ILIKE ? OR destination_url ILIKE ? OR title ILIKE ?",
+			searchPattern, searchPattern, searchPattern)
+	}
+
+	var count int64
+	if err := query.Count(&count).Error; err != nil {
+		return 0, fmt.Errorf("error counting links: %w", err)
+	}
+	return int(count), nil
+}
+
 func (r *LinkRepository) Update(link *models.Link) error {
 	return r.db.Model(link).Updates(map[string]interface{}{
 		"destination_url": link.DestinationURL,
