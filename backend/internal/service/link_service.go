@@ -210,8 +210,18 @@ func (s *LinkService) GetLinkByShortCode(shortCode string) (*models.Link, error)
 }
 
 // ListLinks lists all links for a user with pagination
-func (s *LinkService) ListLinks(userID int64, limit, offset int, search string, sortBy string) ([]*models.Link, error) {
-	return s.linkRepo.GetByUserID(userID, limit, offset, search, sortBy)
+func (s *LinkService) ListLinks(userID int64, limit, offset int, search string, sortBy string) ([]*models.Link, int, error) {
+	links, err := s.linkRepo.GetByUserID(userID, limit, offset, search, sortBy)
+	if err != nil {
+		return nil, 0, err
+	}
+
+	total, err := s.linkRepo.CountByUserIDWithSearch(userID, search)
+	if err != nil {
+		return nil, 0, err
+	}
+
+	return links, total, nil
 }
 
 // UpdateLink updates a link
