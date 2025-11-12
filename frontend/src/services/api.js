@@ -40,14 +40,23 @@ apiClient.interceptors.response.use(
 export default {
   // Auth endpoints
   auth: {
-    signup(email, password) {
-      return apiClient.post('/auth/signup', { email, password })
+    signup(email, password, fullName = '') {
+      return apiClient.post('/auth/signup', { email, password, full_name: fullName })
     },
     login(email, password) {
       return apiClient.post('/auth/login', { email, password })
     },
     getProfile() {
       return apiClient.get('/profile')
+    },
+    updateProfile(fullName) {
+      return apiClient.put('/profile', { full_name: fullName })
+    },
+    changePassword(currentPassword, newPassword) {
+      return apiClient.post('/auth/change-password', {
+        current_password: currentPassword,
+        new_password: newPassword
+      })
     },
     generateAPIKey() {
       return apiClient.post('/api-key')

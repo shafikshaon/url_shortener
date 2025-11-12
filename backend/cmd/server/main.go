@@ -98,7 +98,9 @@ func main() {
 		{
 			// User routes
 			protected.GET("/profile", authHandler.GetProfile)
+			protected.PUT("/profile", authHandler.UpdateProfile)
 			protected.POST("/api-key", authHandler.GenerateAPIKey)
+			protected.POST("/auth/change-password", authHandler.ChangePassword)
 
 			// Link routes
 			protected.POST("/links", linkHandler.CreateLink)

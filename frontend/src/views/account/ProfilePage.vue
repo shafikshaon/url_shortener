@@ -15,35 +15,33 @@
               <h6 class="mb-0">Personal Information</h6>
             </div>
             <div class="card-body">
-              <form>
+              <div v-if="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle"></i> {{ successMessage }}
+                <button type="button" class="btn-close" @click="successMessage = ''" aria-label="Close"></button>
+              </div>
+              <div v-if="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-circle"></i> {{ errorMessage }}
+                <button type="button" class="btn-close" @click="errorMessage = ''" aria-label="Close"></button>
+              </div>
+              <form @submit.prevent="handleSaveProfile">
                 <div class="mb-3">
                   <label class="form-label">Full Name</label>
-                  <input type="text" class="form-control" placeholder="Enter your full name" value="John Doe">
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="profileForm.fullName"
+                    placeholder="Enter your full name"
+                  >
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Email Address</label>
                   <input type="email" class="form-control" :value="userEmail" disabled>
                   <small class="text-muted">Email cannot be changed</small>
                 </div>
-                <div class="mb-3">
-                  <label class="form-label">Company / Organization</label>
-                  <input type="text" class="form-control" placeholder="Enter company name">
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Job Title</label>
-                  <input type="text" class="form-control" placeholder="Enter job title">
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Time Zone</label>
-                  <select class="form-select">
-                    <option>UTC</option>
-                    <option>America/New_York</option>
-                    <option>America/Los_Angeles</option>
-                    <option>Europe/London</option>
-                    <option>Asia/Tokyo</option>
-                  </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="submit" class="btn btn-primary" :disabled="isSubmitting">
+                  <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
+                  Save Changes
+                </button>
               </form>
             </div>
           </div>
@@ -93,8 +91,9 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useAuthStore } from '@/store/auth'
+import api from '@/services/api'
 
 const authStore = useAuthStore()
 const userEmail = computed(() => authStore.currentUser?.email || '')
@@ -102,6 +101,45 @@ const subscriptionPlan = computed(() => {
   const tier = authStore.currentUser?.subscription_tier || 'free'
   return tier.charAt(0).toUpperCase() + tier.slice(1)
 })
+
+const profileForm = ref({
+  fullName: ''
+})
+
+const isSubmitting = ref(false)
+const successMessage = ref('')
+const errorMessage = ref('')
+
+// Load profile data on mount
+onMounted(async () => {
+  try {
+    const response = await api.auth.getProfile()
+    profileForm.value.fullName = response.data.full_name || ''
+  } catch (error) {
+    console.error('Failed to load profile:', error)
+  }
+})
+
+const handleSaveProfile = async () => {
+  // Reset messages
+  successMessage.value = ''
+  errorMessage.value = ''
+
+  try {
+    isSubmitting.value = true
+
+    const response = await api.auth.updateProfile(profileForm.value.fullName)
+
+    // Update user data in store
+    authStore.updateUser(response.data)
+
+    successMessage.value = 'Profile updated successfully!'
+  } catch (error) {
+    errorMessage.value = error.response?.data?.error || 'Failed to update profile. Please try again.'
+  } finally {
+    isSubmitting.value = false
+  }
+}
 </script>
 
 <style scoped>

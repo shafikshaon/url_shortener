@@ -74,6 +74,11 @@ export const useAuthStore = defineStore('auth', {
       } catch (error) {
         console.error('Failed to refresh profile:', error)
       }
+    },
+
+    updateUser(userData) {
+      this.user = userData
+      localStorage.setItem('user', JSON.stringify(userData))
     }
   }
 })
