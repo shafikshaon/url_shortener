@@ -17,6 +17,7 @@ const (
 type User struct {
 	ID               int64            `json:"id" db:"id" gorm:"primaryKey;autoIncrement"`
 	Email            string           `json:"email" db:"email" gorm:"uniqueIndex;not null;size:255"`
+	FullName         string           `json:"full_name" db:"full_name" gorm:"size:255"`
 	PasswordHash     string           `json:"-" db:"password_hash" gorm:"not null;size:255"`
 	APIKey           *string          `json:"api_key,omitempty" db:"api_key" gorm:"uniqueIndex;size:255"`
 	SubscriptionTier SubscriptionTier `json:"subscription_tier" db:"subscription_tier" gorm:"type:varchar(50);default:'free'"`

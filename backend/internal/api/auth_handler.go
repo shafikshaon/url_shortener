@@ -25,6 +25,7 @@ func NewAuthHandler(userRepo *database.UserRepository, jwtService *auth.JWTServi
 
 type SignupRequest struct {
 	Email    string `json:"email" binding:"required,email"`
+	FullName string `json:"full_name"`
 	Password string `json:"password" binding:"required,min=8"`
 }
 
@@ -62,6 +63,7 @@ func (h *AuthHandler) Signup(c *gin.Context) {
 	// Create user
 	user := &models.User{
 		Email:            req.Email,
+		FullName:         req.FullName,
 		PasswordHash:     passwordHash,
 		SubscriptionTier: models.TierFree,
 	}
@@ -178,6 +180,90 @@ func (h *AuthHandler) GenerateAPIKey(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"api_key": apiKey})
+}
+
+// UpdateProfile updates the user's profile information
+func (h *AuthHandler) UpdateProfile(c *gin.Context) {
+	userID, exists := auth.GetUserID(c)
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		return
+	}
+
+	var req struct {
+		FullName string `json:"full_name"`
+	}
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	user, err := h.userRepo.GetByID(userID)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+		return
+	}
+
+	// Update user fields
+	user.FullName = req.FullName
+
+	if err := h.userRepo.Update(user); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update profile"})
+		return
+	}
+
+	// Clear password hash before sending response
+	user.PasswordHash = ""
+
+	c.JSON(http.StatusOK, user)
+}
+
+// ChangePassword handles password change for authenticated users
+func (h *AuthHandler) ChangePassword(c *gin.Context) {
+	userID, exists := auth.GetUserID(c)
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		return
+	}
+
+	var req struct {
+		CurrentPassword string `json:"current_password" binding:"required"`
+		NewPassword     string `json:"new_password" binding:"required,min=8"`
+	}
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	user, err := h.userRepo.GetByID(userID)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+		return
+	}
+
+	// Verify current password
+	if !auth.CheckPassword(req.CurrentPassword, user.PasswordHash) {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Current password is incorrect"})
+		return
+	}
+
+	// Hash new password
+	newPasswordHash, err := auth.HashPassword(req.NewPassword)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to process new password"})
+		return
+	}
+
+	// Update password
+	user.PasswordHash = newPasswordHash
+	if err := h.userRepo.Update(user); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update password"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Password changed successfully"})
 }
 
 // generateAPIKey creates a random API key
