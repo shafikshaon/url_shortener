@@ -125,11 +125,18 @@
                   </div>
 
                   <div class="link-card-actions">
+                    <button
+                      class="btn btn-sm btn-outline-secondary"
+                      @click="previewLink(link)"
+                      title="Preview destination"
+                    >
+                      <i class="bi bi-eye"></i>
+                    </button>
                     <RouterLink
                       :to="`/links/${link.id}`"
-                      class="btn btn-sm btn-outline-primary"
+                      class="btn btn-sm btn-outline-primary flex-grow-1"
                     >
-                      <i class="bi bi-bar-chart"></i> View Analytics
+                      <i class="bi bi-bar-chart"></i> Analytics
                     </RouterLink>
                     <button
                       class="btn btn-sm btn-outline-danger"
@@ -145,25 +152,30 @@
 
             <!-- Pagination -->
             <div v-if="links.length > 0" class="card-footer bg-white">
-              <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
                 <div class="text-muted">
-                  Showing {{ links.length }} links
+                  Showing {{ offset + 1 }}-{{ Math.min(offset + links.length, totalCount) }} of {{ totalCount }} links
                 </div>
-                <div class="btn-group">
-                  <button
-                    class="btn btn-outline-primary"
-                    :disabled="offset === 0"
-                    @click="previousPage"
-                  >
-                    <i class="bi bi-chevron-left"></i> Previous
-                  </button>
-                  <button
-                    class="btn btn-outline-primary"
-                    :disabled="links.length < perPage"
-                    @click="nextPage"
-                  >
-                    Next <i class="bi bi-chevron-right"></i>
-                  </button>
+                <div class="pagination-controls">
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      :disabled="offset === 0"
+                      @click="previousPage"
+                    >
+                      <i class="bi bi-chevron-left"></i> Previous
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm" disabled>
+                      Page {{ currentPage }}
+                    </button>
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      :disabled="links.length < perPage || offset + links.length >= totalCount"
+                      @click="nextPage"
+                    >
+                      Next <i class="bi bi-chevron-right"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -178,11 +190,118 @@
       @close="showCreateModal = false"
       @created="handleLinkCreated"
     />
+
+    <!-- Link Preview Modal -->
+    <div
+      v-if="previewModalVisible"
+      class="modal fade show d-block"
+      tabindex="-1"
+      style="background-color: rgba(0, 0, 0, 0.5)"
+      @click.self="closePreviewModal"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="bi bi-shield-check"></i> Link Preview - What's Behind This Link?
+            </h5>
+            <button type="button" class="btn-close" @click="closePreviewModal"></button>
+          </div>
+          <div class="modal-body">
+            <div v-if="selectedPreviewLink" class="link-preview-container">
+              <div class="alert alert-info mb-3">
+                <i class="bi bi-info-circle"></i>
+                This feature helps you verify the destination of a short link before clicking it.
+              </div>
+
+              <div class="preview-section">
+                <label class="preview-label">
+                  <i class="bi bi-link-45deg"></i> Short Link
+                </label>
+                <div class="preview-value">
+                  <code>{{ selectedPreviewLink.short_url || `${getBaseUrl()}/${selectedPreviewLink.short_code}` }}</code>
+                  <button class="btn btn-sm btn-outline-primary ms-2" @click="copyShortURL(selectedPreviewLink.short_url || `${getBaseUrl()}/${selectedPreviewLink.short_code}`)">
+                    <i class="bi bi-clipboard"></i> Copy
+                  </button>
+                </div>
+              </div>
+
+              <div class="preview-divider">
+                <i class="bi bi-arrow-down"></i>
+              </div>
+
+              <div class="preview-section">
+                <label class="preview-label">
+                  <i class="bi bi-box-arrow-up-right"></i> Destination URL
+                </label>
+                <div class="preview-value destination-preview">
+                  <a :href="selectedPreviewLink.destination_url" target="_blank" rel="noopener noreferrer" class="destination-link-large">
+                    {{ selectedPreviewLink.destination_url }}
+                    <i class="bi bi-box-arrow-up-right"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="preview-section" v-if="selectedPreviewLink.title">
+                <label class="preview-label">
+                  <i class="bi bi-tag"></i> Link Title
+                </label>
+                <div class="preview-value">
+                  {{ selectedPreviewLink.title }}
+                </div>
+              </div>
+
+              <div class="preview-section">
+                <label class="preview-label">
+                  <i class="bi bi-info-circle"></i> Link Information
+                </label>
+                <div class="info-grid">
+                  <div class="info-item">
+                    <span class="info-label">Total Clicks</span>
+                    <span class="info-value">{{ formatNumber(selectedPreviewLink.click_count || 0) }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="info-label">Created</span>
+                    <span class="info-value">{{ formatDate(selectedPreviewLink.created_at) }}</span>
+                  </div>
+                  <div class="info-item" v-if="selectedPreviewLink.expires_at">
+                    <span class="info-label">Expires</span>
+                    <span class="info-value">{{ formatDate(selectedPreviewLink.expires_at) }}</span>
+                  </div>
+                  <div class="info-item" v-if="selectedPreviewLink.tags && selectedPreviewLink.tags.length > 0">
+                    <span class="info-label">Tags</span>
+                    <span class="info-value">
+                      <span v-for="tag in selectedPreviewLink.tags" :key="tag" class="badge bg-secondary me-1">{{ tag }}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert-success mt-3 mb-0">
+                <i class="bi bi-check-circle"></i>
+                <strong>Safe Link:</strong> This link is owned by you and redirects to the destination URL shown above.
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @click="closePreviewModal">Close</button>
+            <a
+              :href="selectedPreviewLink?.destination_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
+              <i class="bi bi-box-arrow-up-right"></i> Visit Destination
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import api from '@/services/api'
 import CreateLinkModal from '@/components/CreateLinkModal.vue'
@@ -194,19 +313,42 @@ const searchQuery = ref('')
 const sortBy = ref('created_desc')
 const perPage = ref(20)
 const offset = ref(0)
+const totalCount = ref(0)
+const previewModalVisible = ref(false)
+const selectedPreviewLink = ref(null)
 
 let searchTimeout = null
+
+const currentPage = computed(() => Math.floor(offset.value / perPage.value) + 1)
 
 const loadLinks = async () => {
   loading.value = true
   try {
+    // Enhanced search: process search query to handle short links with/without domain
+    let processedSearch = searchQuery.value.trim()
+
+    // If search contains a domain, extract just the short code
+    if (processedSearch.includes('/')) {
+      const parts = processedSearch.split('/')
+      processedSearch = parts[parts.length - 1]
+    }
+
+    // Remove protocol if present (http://, https://)
+    if (processedSearch.includes('://')) {
+      const urlParts = processedSearch.split('://')
+      if (urlParts[1]) {
+        processedSearch = urlParts[1].split('/').pop()
+      }
+    }
+
     const response = await api.links.list({
       limit: perPage.value,
       offset: offset.value,
-      search: searchQuery.value,
+      search: processedSearch,
       sort: sortBy.value
     })
     links.value = response.data.links || []
+    totalCount.value = response.data.total || links.value.length
   } catch (error) {
     console.error('Failed to load links:', error)
   } finally {
@@ -298,6 +440,16 @@ const truncateUrl = (url, maxLength = 50) => {
 
 const getBaseUrl = () => {
   return window.location.origin
+}
+
+const previewLink = (link) => {
+  selectedPreviewLink.value = link
+  previewModalVisible.value = true
+}
+
+const closePreviewModal = () => {
+  previewModalVisible.value = false
+  selectedPreviewLink.value = null
 }
 
 onMounted(() => {
@@ -586,6 +738,104 @@ onMounted(() => {
   font-size: 14px;
 }
 
+/* Preview Modal */
+.link-preview-container {
+  padding: 8px 0;
+}
+
+.preview-section {
+  margin-bottom: 20px;
+}
+
+.preview-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.preview-value {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+}
+
+.preview-value code {
+  flex: 1;
+  font-size: 14px;
+  background: none;
+  padding: 0;
+  color: var(--primary-color);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.preview-divider {
+  text-align: center;
+  margin: 16px 0;
+  color: var(--text-tertiary);
+  font-size: 20px;
+}
+
+.destination-preview {
+  padding: 16px;
+}
+
+.destination-link-large {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 14px;
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.destination-link-large:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.info-value {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .links-grid {
@@ -599,6 +849,10 @@ onMounted(() => {
 
   .link-stats-badges {
     width: 100%;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

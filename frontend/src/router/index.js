@@ -50,6 +50,69 @@ const router = createRouter({
       name: 'settings',
       component: () => import('@/views/SettingsPage.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/notifications',
+      name: 'notifications',
+      component: () => import('@/views/NotificationsPage.vue'),
+      meta: { requiresAuth: true }
+    },
+    // Account routes
+    {
+      path: '/account/profile',
+      name: 'account-profile',
+      component: () => import('@/views/account/ProfilePage.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/account/security',
+      name: 'account-security',
+      component: () => import('@/views/account/SecurityPage.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/account/billing',
+      name: 'account-billing',
+      component: () => import('@/views/account/BillingPage.vue'),
+      meta: { requiresAuth: true }
+    },
+    // Organization routes
+    {
+      path: '/organization/settings',
+      name: 'organization-settings',
+      component: () => import('@/views/organization/SettingsPage.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/organization/members',
+      name: 'organization-members',
+      component: () => import('@/views/organization/MembersPage.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/organization/domains',
+      name: 'organization-domains',
+      component: () => import('@/views/organization/DomainsPage.vue'),
+      meta: { requiresAuth: true }
+    },
+    // Configuration routes
+    {
+      path: '/config/api',
+      name: 'config-api',
+      component: () => import('@/views/config/ApiKeysPage.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/config/webhooks',
+      name: 'config-webhooks',
+      component: () => import('@/views/config/WebhooksPage.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/config/integrations',
+      name: 'config-integrations',
+      component: () => import('@/views/config/IntegrationsPage.vue'),
+      meta: { requiresAuth: true }
     }
   ]
 })
