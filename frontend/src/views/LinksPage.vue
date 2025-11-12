@@ -3,44 +3,34 @@
     <div class="content-wrapper-full">
 
       <!-- Filters -->
-      <div class="row mb-4">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search links..."
-                    v-model="searchQuery"
-                    @input="debouncedSearch"
-                  />
-                </div>
-                <div class="col-md-3">
-                  <select class="form-select" v-model="sortBy" @change="loadLinks">
-                    <option value="created_desc">Newest First</option>
-                    <option value="created_asc">Oldest First</option>
-                    <option value="clicks">Most Clicks</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <select class="form-select" v-model="perPage" @change="loadLinks">
-                    <option :value="20">20 per page</option>
-                    <option :value="50">50 per page</option>
-                    <option :value="100">100 per page</option>
-                  </select>
-                </div>
-              </div>
+      <div class="mb-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="filters-row">
+              <input
+                type="text"
+                class="form-control filter-search"
+                placeholder="Search links..."
+                v-model="searchQuery"
+                @input="debouncedSearch"
+              />
+              <select class="form-select filter-select" v-model="sortBy" @change="loadLinks">
+                <option value="created_desc">Newest First</option>
+                <option value="created_asc">Oldest First</option>
+                <option value="clicks">Most Clicks</option>
+              </select>
+              <select class="form-select filter-select" v-model="perPage" @change="loadLinks">
+                <option :value="20">20 per page</option>
+                <option :value="50">50 per page</option>
+                <option :value="100">100 per page</option>
+              </select>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Links Grid -->
-      <div class="row">
-        <div class="col">
-          <div class="card">
+      <div class="card">
             <div class="card-body p-0">
               <div v-if="loading" class="text-center py-5">
                 <div class="spinner-border text-primary" role="status">
@@ -167,8 +157,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
     </div>
 
     <!-- Create Link Modal -->
@@ -453,11 +441,39 @@ onMounted(() => {
 
 .content-wrapper-full {
   width: 100%;
+  max-width: 100%;
+}
+
+/* Filters Row */
+.filters-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-search {
+  flex: 1;
+  min-width: 300px;
+}
+
+.filter-select {
+  min-width: 180px;
 }
 
 @media (max-width: 768px) {
   .links-page {
     padding: 20px;
+  }
+
+  .filters-row {
+    flex-direction: column;
+  }
+
+  .filter-search,
+  .filter-select {
+    width: 100%;
+    min-width: 100%;
   }
 }
 
