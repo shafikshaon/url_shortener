@@ -383,7 +383,9 @@ func (r *AnalyticsRepository) GetUserAnalytics(userID int64) (map[string]interfa
 		Count(&totalClicks)
 	stats["total_clicks"] = totalClicks
 
-	firstOfMonth := time.Now().Format("2006-01-01")
+	// Get the first day of the current month
+	now := time.Now()
+	firstOfMonth := time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, now.Location())
 	var monthClicks int64
 	r.db.Table("clicks c").
 		Joins("INNER JOIN links l ON c.link_id = l.id").
