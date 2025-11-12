@@ -317,4 +317,99 @@ const copyShortURL = async () => {
 .modal-body .alert {
   margin-bottom: 24px;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+
+  .modal-header {
+    padding: 20px 24px;
+  }
+
+  .modal-title {
+    font-size: 16px;
+  }
+
+  .modal-body {
+    padding: 24px;
+    max-height: 60vh;
+  }
+
+  .modal-footer {
+    padding: 16px 24px;
+    flex-wrap: wrap;
+  }
+
+  .modal-footer .btn {
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+
+  .modal-body .mb-3 {
+    margin-bottom: 20px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-dialog {
+    margin: 0.5rem;
+    max-width: calc(100% - 1rem);
+  }
+
+  .modal-header {
+    padding: 16px 20px;
+  }
+
+  .modal-title {
+    font-size: 15px;
+  }
+
+  .modal-body {
+    padding: 20px;
+    max-height: calc(100vh - 200px);
+  }
+
+  .modal-footer {
+    padding: 12px 20px;
+    gap: 8px;
+  }
+
+  .modal-footer .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    flex: 1 1 100%;
+  }
+
+  .modal-body .form-label {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .modal-body .form-control {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .modal-body .form-text {
+    font-size: 12px;
+  }
+
+  .modal-body .mb-3 {
+    margin-bottom: 16px !important;
+  }
+
+  .modal-body .alert {
+    padding: 12px;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .btn-sm {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
 </style>

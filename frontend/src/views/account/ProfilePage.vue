@@ -159,4 +159,120 @@ const handleSaveProfile = async () => {
   color: white;
   font-size: 36px;
 }
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .container-fluid {
+    padding: 1.5rem !important;
+  }
+
+  .col-lg-8,
+  .col-lg-4 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem !important;
+  }
+
+  .profile-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .card-header h6 {
+    font-size: 0.95rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .d-flex.align-items-center {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .avatar-large {
+    width: 64px;
+    height: 64px;
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0.75rem !important;
+  }
+
+  .profile-page h1 {
+    font-size: 1.25rem;
+  }
+
+  .profile-page .text-muted {
+    font-size: 0.9rem;
+  }
+
+  .card {
+    border-radius: 8px;
+    margin-bottom: 1rem !important;
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .card-header h6 {
+    font-size: 0.9rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .form-control {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .alert {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .avatar-large {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+    margin-bottom: 0.75rem;
+  }
+
+  .h5 {
+    font-size: 1.1rem;
+  }
+
+  small {
+    font-size: 0.85rem;
+  }
+}
 </style>

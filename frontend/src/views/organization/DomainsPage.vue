@@ -88,4 +88,152 @@ const canAddDomain = computed(() => {
   text-align: center;
   padding: 20px;
 }
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .container-fluid {
+    padding: 1.5rem !important;
+  }
+
+  .col-lg-8,
+  .col-lg-4 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem !important;
+  }
+
+  .domains-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .domains-page h4 {
+    font-size: 1.25rem;
+  }
+
+  .card-header h5,
+  .card-header h6 {
+    font-size: 0.95rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .col-md-4,
+  .col-md-6 {
+    margin-bottom: 1rem;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+  }
+
+  .feature-card {
+    padding: 15px;
+  }
+
+  .feature-card h6 {
+    font-size: 0.95rem;
+  }
+
+  .feature-card i {
+    font-size: 28px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0.75rem !important;
+  }
+
+  .domains-page h1 {
+    font-size: 1.25rem;
+  }
+
+  .domains-page h4 {
+    font-size: 1.1rem;
+  }
+
+  .domains-page .text-muted {
+    font-size: 0.9rem;
+  }
+
+  .card {
+    border-radius: 8px;
+    margin-bottom: 1rem !important;
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .card-header h5,
+  .card-header h6 {
+    font-size: 0.9rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .form-control {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .alert {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .feature-card {
+    padding: 12px;
+  }
+
+  .feature-card h6 {
+    font-size: 0.9rem;
+    margin-top: 0.5rem !important;
+  }
+
+  .feature-card i {
+    font-size: 24px !important;
+  }
+
+  .feature-card .small {
+    font-size: 0.8rem;
+  }
+
+  .text-center i[style*="font-size: 64px"] {
+    font-size: 48px !important;
+  }
+
+  small {
+    font-size: 0.8rem;
+  }
+}
 </style>

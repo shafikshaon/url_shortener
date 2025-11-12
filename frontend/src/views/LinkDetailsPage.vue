@@ -308,4 +308,112 @@ code {
 .text-success {
   color: #10B981 !important;
 }
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .container-fluid {
+    padding: 1.5rem !important;
+  }
+
+  .col-lg-8,
+  .col-lg-4 {
+    margin-bottom: 1.5rem;
+  }
+
+  .display-4 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem !important;
+  }
+
+  .link-details-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .card-header h5 {
+    font-size: 1rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .display-4 {
+    font-size: 2rem;
+  }
+
+  code {
+    font-size: 0.9rem;
+    padding: 0.3em 0.5em;
+  }
+
+  .d-flex.align-items-center.gap-2 {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .col-md-4 {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0.75rem !important;
+  }
+
+  .link-details-page h1 {
+    font-size: 1.25rem;
+  }
+
+  .card {
+    border-radius: 8px;
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .card-header h5 {
+    font-size: 0.9rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .display-4 {
+    font-size: 1.75rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .form-label {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  code {
+    font-size: 0.85rem;
+  }
+
+  .d-flex.justify-content-between {
+    font-size: 0.9rem;
+  }
+
+  canvas {
+    max-height: 250px;
+  }
+}
 </style>

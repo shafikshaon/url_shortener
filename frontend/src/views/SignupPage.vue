@@ -190,4 +190,79 @@ const handleSignup = async () => {
   border-radius: 6px;
   font-weight: 600;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .auth-page {
+    padding: 1rem 0;
+  }
+
+  .col-md-5 {
+    padding: 0 1rem;
+  }
+
+  .card {
+    margin-top: 1.5rem !important;
+  }
+
+  .card-body {
+    padding: 2rem 1.5rem !important;
+  }
+
+  .card h2 {
+    font-size: 1.5rem;
+  }
+
+  .auth-page::before,
+  .auth-page::after {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .auth-page {
+    padding: 0.5rem 0;
+  }
+
+  .col-md-5 {
+    padding: 0 0.75rem;
+  }
+
+  .card {
+    margin-top: 1rem !important;
+    border-radius: 8px;
+  }
+
+  .card-body {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .card h2 {
+    font-size: 1.35rem;
+  }
+
+  .card i {
+    font-size: 2.5rem !important;
+  }
+
+  .form-control {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .btn-primary {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .form-text {
+    font-size: 12px;
+  }
+
+  .auth-page::before,
+  .auth-page::after {
+    display: none;
+  }
+}
 </style>

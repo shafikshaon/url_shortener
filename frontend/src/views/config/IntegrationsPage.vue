@@ -187,4 +187,149 @@
 .integration-icon.github {
   background-color: #181717;
 }
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .container-fluid {
+    padding: 1.5rem !important;
+  }
+
+  .col-lg-8,
+  .col-lg-4 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem !important;
+  }
+
+  .integrations-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .card-header h5,
+  .card-header h6 {
+    font-size: 0.95rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .col-md-4,
+  .col-md-6 {
+    margin-bottom: 1rem;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+  }
+
+  .integration-card {
+    padding: 15px;
+  }
+
+  .integration-card h6 {
+    font-size: 0.95rem;
+  }
+
+  .integration-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0.75rem !important;
+  }
+
+  .integrations-page h1 {
+    font-size: 1.25rem;
+  }
+
+  .integrations-page .text-muted {
+    font-size: 0.9rem;
+  }
+
+  .card {
+    border-radius: 8px;
+    margin-bottom: 1rem !important;
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .card-header h5,
+  .card-header h6 {
+    font-size: 0.9rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .form-control {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .alert {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .integration-card {
+    padding: 12px;
+  }
+
+  .integration-card h6 {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .integration-card .small {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .integration-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  .text-center i[style*="font-size: 48px"] {
+    font-size: 36px !important;
+  }
+
+  small {
+    font-size: 0.8rem;
+  }
+}
 </style>
