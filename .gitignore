@@ -3,3 +3,15 @@
 /.idea/url_shortener.iml
 /.idea/vcs.xml
 /frontend/.vite/
+
+# Backend build artifacts
+backend/server
+backend/*.exe
+backend/*.out
+
+# Go build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
