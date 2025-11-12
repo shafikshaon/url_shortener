@@ -164,4 +164,110 @@ const handleChangePassword = async () => {
   border: 1px solid var(--border-light);
   border-radius: 8px;
 }
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .container-fluid {
+    padding: 1.5rem !important;
+  }
+
+  .col-lg-8 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem !important;
+  }
+
+  .security-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .card-header h6 {
+    font-size: 0.95rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .session-item {
+    padding: 12px;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0.75rem !important;
+  }
+
+  .security-page h1 {
+    font-size: 1.25rem;
+  }
+
+  .security-page .text-muted {
+    font-size: 0.9rem;
+  }
+
+  .card {
+    border-radius: 8px;
+    margin-bottom: 1rem !important;
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .card-header h6 {
+    font-size: 0.9rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .form-control {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .alert {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .session-item {
+    padding: 10px;
+  }
+
+  .fw-bold {
+    font-size: 0.9rem;
+  }
+
+  small {
+    font-size: 0.8rem;
+  }
+}
 </style>

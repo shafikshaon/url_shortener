@@ -108,4 +108,119 @@
   color: white;
   font-size: 36px;
 }
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .container-fluid {
+    padding: 1.5rem !important;
+  }
+
+  .col-lg-8,
+  .col-lg-4 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem !important;
+  }
+
+  .org-settings-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .card-header h5,
+  .card-header h6 {
+    font-size: 0.95rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .col-md-4,
+  .col-md-6 {
+    margin-bottom: 1rem;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+  }
+
+  .org-logo {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0.75rem !important;
+  }
+
+  .org-settings-page h1 {
+    font-size: 1.25rem;
+  }
+
+  .org-settings-page .text-muted {
+    font-size: 0.9rem;
+  }
+
+  .card {
+    border-radius: 8px;
+    margin-bottom: 1rem !important;
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .card-header h5,
+  .card-header h6 {
+    font-size: 0.9rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .form-control,
+  .form-select {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .org-logo {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  small {
+    font-size: 0.8rem;
+  }
+}
 </style>

@@ -208,4 +208,166 @@ const revokeKey = (id) => {
   padding: 0;
   color: var(--text-primary);
 }
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .container-fluid {
+    padding: 1.5rem !important;
+  }
+
+  .col-lg-8,
+  .col-lg-4 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem !important;
+  }
+
+  .api-keys-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .card-header h5,
+  .card-header h6 {
+    font-size: 0.95rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .col-md-4,
+  .col-md-6 {
+    margin-bottom: 1rem;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+  }
+
+  .api-key-item {
+    padding: 15px;
+  }
+
+  .api-key-value {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .api-key-value code {
+    word-break: break-all;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0.75rem !important;
+  }
+
+  .api-keys-page h1 {
+    font-size: 1.25rem;
+  }
+
+  .api-keys-page .text-muted {
+    font-size: 0.9rem;
+  }
+
+  .card {
+    border-radius: 8px;
+    margin-bottom: 1rem !important;
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .card-header h5,
+  .card-header h6 {
+    font-size: 0.9rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .form-control {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .alert {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .api-key-item {
+    padding: 12px;
+  }
+
+  .api-key-item h6 {
+    font-size: 0.9rem;
+  }
+
+  .api-key-value {
+    padding: 10px;
+    margin: 8px 0;
+  }
+
+  .api-key-value code {
+    font-size: 11px;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 1rem;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+  }
+
+  small {
+    font-size: 0.8rem;
+  }
+
+  ul.small {
+    font-size: 0.85rem;
+    padding-left: 1.25rem;
+  }
+}
 </style>

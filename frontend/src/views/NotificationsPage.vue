@@ -234,4 +234,113 @@ const markAsRead = (id) => {
   color: var(--text-tertiary);
   white-space: nowrap;
 }
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .container-fluid {
+    padding: 1.5rem !important;
+  }
+
+  .col-lg-8,
+  .col-lg-4 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem !important;
+  }
+
+  .notifications-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .notification-item {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .notification-icon-wrapper {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .notification-title {
+    font-size: 14px;
+  }
+
+  .notification-message {
+    font-size: 13px;
+  }
+
+  .notification-time {
+    font-size: 12px;
+  }
+
+  .card-header h6 {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0.75rem !important;
+  }
+
+  .notifications-page h1 {
+    font-size: 1.25rem;
+  }
+
+  .notifications-page .text-muted {
+    font-size: 0.9rem;
+  }
+
+  .notification-item {
+    padding: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .notification-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .notification-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 4px;
+  }
+
+  .notification-title {
+    font-size: 13px;
+  }
+
+  .notification-message {
+    font-size: 12px;
+  }
+
+  .notification-time {
+    font-size: 11px;
+  }
+
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    margin-top: 8px;
+    width: 100%;
+  }
+
+  .form-check-label {
+    font-size: 14px;
+  }
+}
 </style>

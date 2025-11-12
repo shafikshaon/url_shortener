@@ -207,13 +207,168 @@ onMounted(() => {
   padding: 0 32px;
 }
 
-@media (max-width: 768px) {
+/* Enhanced Responsive Styles */
+@media (max-width: 991px) {
   .analytics-page {
     padding: 24px 0;
   }
 
   .content-wrapper {
-    padding: 0 20px;
+    padding: 0 24px;
+  }
+
+  .col-md-4,
+  .col-md-6 {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .analytics-page {
+    padding: 20px 0;
+  }
+
+  .content-wrapper {
+    padding: 0 16px;
+  }
+
+  .stat-card h2 {
+    font-size: 1.75rem;
+  }
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .card-body.py-5 {
+    padding: 2rem 1rem !important;
+  }
+
+  .card-body i[style*="font-size: 3rem"] {
+    font-size: 2.5rem !important;
+  }
+
+  h4 {
+    font-size: 1.35rem;
+  }
+
+  .card-header h5 {
+    font-size: 1rem;
+  }
+
+  .col-md-4,
+  .col-md-6 {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .analytics-page {
+    padding: 16px 0;
+  }
+
+  .content-wrapper {
+    padding: 0 12px;
+  }
+
+  .stat-card {
+    margin-bottom: 0.75rem;
+  }
+
+  .stat-card .card-body {
+    padding: 0.75rem;
+  }
+
+  .stat-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .stat-card p {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .stat-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+
+  .d-flex.justify-content-between {
+    gap: 0.5rem;
+  }
+
+  .card {
+    border-radius: 8px;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .card-body.py-5 {
+    padding: 1.5rem 0.75rem !important;
+  }
+
+  .card-body i[style*="font-size: 3rem"] {
+    font-size: 2rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-body p.text-muted {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .card-header h5 {
+    font-size: 0.95rem;
+  }
+
+  .col-md-6 {
+    margin-bottom: 0.75rem;
+  }
+
+  .d-flex.justify-content-between span,
+  .d-flex.justify-content-between strong {
+    font-size: 0.9rem;
+  }
+
+  .progress {
+    height: 8px;
+  }
+
+  .alert {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+    margin-top: 1rem !important;
+  }
+
+  .g-3 {
+    gap: 0.75rem !important;
+  }
+
+  .mb-4 {
+    margin-bottom: 1rem !important;
   }
 }
 

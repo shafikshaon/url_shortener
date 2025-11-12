@@ -310,4 +310,149 @@ import { RouterLink } from 'vue-router'
   font-weight: 700;
   letter-spacing: -0.03em;
 }
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .hero-section {
+    padding: 4rem 0;
+    min-height: 60vh;
+  }
+
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-section .lead {
+    font-size: 1rem;
+  }
+
+  .hero-image {
+    font-size: 10rem;
+    margin-top: 2rem;
+  }
+
+  .features-section,
+  .pricing-section {
+    padding: 3rem 0;
+  }
+
+  .features-section h2,
+  .pricing-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .pricing-card.featured {
+    transform: scale(1);
+    margin-top: 1rem;
+  }
+
+  .pricing-card.featured:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 3rem 0;
+    min-height: auto;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-section .lead {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-section .d-flex {
+    flex-direction: column;
+    gap: 0.75rem !important;
+  }
+
+  .hero-section .btn {
+    width: 100%;
+    padding: 0.75rem 1.5rem !important;
+  }
+
+  .hero-image {
+    display: none;
+  }
+
+  .feature-card {
+    padding: 2rem 1.5rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card i {
+    font-size: 2.5rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.125rem;
+  }
+
+  .pricing-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-card .card-body {
+    padding: 2rem 1.5rem !important;
+  }
+
+  .pricing-card .display-4 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    padding: 2rem 0;
+  }
+
+  .hero-section h1 {
+    font-size: 1.75rem;
+    line-height: 1.3;
+  }
+
+  .hero-section .lead {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .hero-section::before,
+  .hero-section::after {
+    display: none;
+  }
+
+  .features-section,
+  .pricing-section {
+    padding: 2rem 0;
+  }
+
+  .features-section h2,
+  .pricing-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .feature-card i {
+    font-size: 2rem;
+  }
+
+  .pricing-card .card-body {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .pricing-card ul li {
+    font-size: 13px;
+  }
+}
 </style>

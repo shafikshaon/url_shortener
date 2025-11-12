@@ -202,4 +202,147 @@ const getCustomDomains = () => {
   font-weight: bold;
   margin-right: 8px;
 }
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .container-fluid {
+    padding: 1.5rem !important;
+  }
+
+  .col-lg-8 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem !important;
+  }
+
+  .billing-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .card-header h6 {
+    font-size: 0.95rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 1rem;
+  }
+
+  .d-flex.justify-content-between .btn {
+    width: 100%;
+  }
+
+  h4 {
+    font-size: 1.35rem;
+  }
+
+  .col-md-4 {
+    margin-bottom: 1rem;
+  }
+
+  .plan-card {
+    padding: 16px;
+  }
+
+  .plan-price {
+    font-size: 28px;
+  }
+
+  .table {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 0.75rem !important;
+  }
+
+  .billing-page h1 {
+    font-size: 1.25rem;
+  }
+
+  .billing-page .text-muted {
+    font-size: 0.9rem;
+  }
+
+  .card {
+    border-radius: 8px;
+    margin-bottom: 1rem !important;
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .card-header h6 {
+    font-size: 0.9rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  .h6 {
+    font-size: 1rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .plan-card {
+    padding: 12px;
+  }
+
+  .plan-price {
+    font-size: 24px;
+    margin: 8px 0;
+  }
+
+  .plan-features {
+    margin: 16px 0;
+  }
+
+  .plan-features li {
+    padding: 6px 0;
+    font-size: 13px;
+  }
+
+  .table {
+    font-size: 0.85rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.5rem 0.4rem;
+  }
+
+  small {
+    font-size: 0.8rem;
+  }
+}
 </style>
