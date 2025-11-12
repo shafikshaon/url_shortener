@@ -1,19 +1,6 @@
 <template>
   <div class="links-page">
-    <div class="container-fluid py-4">
-      <div class="row mb-4">
-        <div class="col">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <h1 class="h3 mb-0">My Links</h1>
-              <p class="text-muted mb-0">Manage and track all your shortened links</p>
-            </div>
-            <button class="btn btn-primary" @click="showCreateModal = true">
-              <i class="bi bi-plus-circle"></i> Create Link
-            </button>
-          </div>
-        </div>
-      </div>
+    <div class="content-wrapper-full">
 
       <!-- Filters -->
       <div class="row mb-4">
@@ -460,18 +447,18 @@ onMounted(() => {
 <style scoped>
 .links-page {
   background-color: var(--bg-primary);
-  min-height: 100vh;
+  min-height: 100%;
+  padding: 32px;
 }
 
-.links-page h1 {
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: var(--text-primary);
+.content-wrapper-full {
+  width: 100%;
 }
 
-.links-page p {
-  color: var(--text-tertiary);
-  font-size: 14px;
+@media (max-width: 768px) {
+  .links-page {
+    padding: 20px;
+  }
 }
 
 /* Empty State */

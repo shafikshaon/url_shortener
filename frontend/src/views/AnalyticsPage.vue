@@ -1,12 +1,6 @@
 <template>
   <div class="analytics-page">
-    <div class="container-fluid py-4">
-      <div class="row mb-4">
-        <div class="col">
-          <h1 class="h3 mb-0">Analytics</h1>
-          <p class="text-muted">Overall statistics for all your links</p>
-        </div>
-      </div>
+    <div class="content-wrapper">
 
       <div v-if="loading" class="text-center py-5">
         <div class="spinner-border text-primary" role="status">
@@ -203,8 +197,25 @@ onMounted(() => {
 
 <style scoped>
 .analytics-page {
-  background-color: #F9FAFB;
-  min-height: 100vh;
+  background-color: var(--bg-primary);
+  min-height: 100%;
+  padding: 32px 0;
+}
+
+.content-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 768px) {
+  .analytics-page {
+    padding: 24px 0;
+  }
+
+  .content-wrapper {
+    padding: 0 20px;
+  }
 }
 
 .stat-card {

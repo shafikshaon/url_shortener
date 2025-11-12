@@ -1,13 +1,6 @@
 <template>
   <div class="dashboard-page">
-    <div class="container-fluid py-4">
-      <!-- Header -->
-      <div class="row mb-4">
-        <div class="col">
-          <h1 class="page-title">Create & Manage Links</h1>
-          <p class="page-subtitle">Shorten, customize, and track your URLs</p>
-        </div>
-      </div>
+    <div class="content-wrapper">
 
       <!-- URL Shortener Form -->
       <div class="row mb-4">
@@ -345,22 +338,24 @@ onMounted(() => {
 <style scoped>
 .dashboard-page {
   background-color: var(--bg-primary);
-  min-height: 100vh;
+  min-height: 100%;
+  padding: 32px 0;
 }
 
-/* Header */
-.page-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 0.25rem;
-  letter-spacing: -0.02em;
+.content-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
 }
 
-.page-subtitle {
-  color: var(--text-tertiary);
-  font-size: 1rem;
-  margin-bottom: 0;
+@media (max-width: 768px) {
+  .dashboard-page {
+    padding: 24px 0;
+  }
+
+  .content-wrapper {
+    padding: 0 20px;
+  }
 }
 
 /* Shortener Card */

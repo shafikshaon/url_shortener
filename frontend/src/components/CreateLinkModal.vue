@@ -206,41 +206,115 @@ const copyShortURL = async () => {
 
 <style scoped>
 .modal {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(10, 37, 64, 0.5);
+  backdrop-filter: blur(4px);
+  animation: modalFadeIn var(--transition-base);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-dialog {
+  animation: modalSlideIn 0.2s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .modal-content {
-  border-radius: 0.75rem;
-  border: 1px solid #E5E7EB;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-2xl);
+  background-color: var(--bg-white);
+  overflow: hidden;
 }
 
 .modal-header {
-  border-bottom: 1px solid #E5E7EB;
-  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  padding: 24px 32px;
+  background-color: var(--bg-white);
 }
 
 .modal-title {
-  color: #111827;
+  color: var(--text-primary);
   font-weight: 600;
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.btn-close {
+  opacity: 0.5;
+  transition: all var(--transition-base);
+  border-radius: var(--radius-md);
+}
+
+.btn-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .modal-body {
-  padding: 1.5rem;
+  padding: 32px;
+  max-height: 70vh;
+  overflow-y: auto;
 }
 
 .modal-footer {
-  border-top: 1px solid #E5E7EB;
-  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-light);
+  padding: 20px 32px;
+  background-color: var(--bg-secondary);
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
 }
 
 .btn-outline-success {
-  border: 2px solid #10B981;
-  color: #10B981;
+  border: 1px solid var(--success-color);
+  color: var(--success-color);
+  background-color: var(--bg-white);
 }
 
-.btn-outline-success:hover {
-  background-color: #10B981;
+.btn-outline-success:hover:not(:disabled) {
+  background-color: var(--success-color);
   color: white;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.modal-backdrop {
+  background-color: rgba(10, 37, 64, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+/* Form styling within modal */
+.modal-body .form-label {
+  margin-bottom: 8px;
+}
+
+.modal-body .mb-3 {
+  margin-bottom: 24px !important;
+}
+
+.modal-body .mb-3:last-child {
+  margin-bottom: 0 !important;
+}
+
+.modal-body .alert {
+  margin-bottom: 24px;
 }
 </style>
