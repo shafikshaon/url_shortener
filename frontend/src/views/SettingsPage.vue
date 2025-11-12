@@ -181,7 +181,7 @@
             <div class="card-body">
               <h5 class="card-title">Account Actions</h5>
               <div class="d-grid gap-2">
-                <button class="btn btn-outline-primary" disabled>
+                <button class="btn btn-outline-primary" @click="goToSecurity">
                   <i class="bi bi-key"></i> Change Password
                 </button>
                 <button class="btn btn-outline-danger" disabled>
@@ -189,7 +189,7 @@
                 </button>
               </div>
               <p class="text-muted small mt-3 mb-0">
-                These features are coming soon.
+                Delete account feature is coming soon.
               </p>
             </div>
           </div>
@@ -213,16 +213,21 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import { useAuthStore } from '@/store/auth'
 import api from '@/services/api'
 
+const router = useRouter()
 const authStore = useAuthStore()
 const apiKey = ref(null)
 const showApiKey = ref(false)
 const generating = ref(false)
 
 const user = computed(() => authStore.currentUser)
+
+const goToSecurity = () => {
+  router.push({ name: 'account-security' })
+}
 
 const generateAPIKey = async () => {
   if (!confirm('This will invalidate your existing API key. Continue?')) {
